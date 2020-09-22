@@ -123,6 +123,11 @@
         <div class="d-flex flex-row-fluid flex-center">
             <!--begin::Signin-->
             <div class="login-form login-form-signup">
+                 @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                 <!--begin::Form-->
                 <form class="form" novalidate="novalidate" id="kt_login_signup_form" method="POST" action="{{ route('register') }}">
                         @csrf
@@ -142,6 +147,11 @@
                         <div class="form-group">
                             <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                             <input type="email" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="email" placeholder="Your email" value="" />
+                             @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <!--end::Form Group-->
 
